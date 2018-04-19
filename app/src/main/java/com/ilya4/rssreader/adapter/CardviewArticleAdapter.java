@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.support.annotation.NonNull;
@@ -52,13 +53,16 @@ public class CardviewArticleAdapter extends RecyclerView.Adapter<CardviewArticle
         TextView titleView = cardView.findViewById(R.id.title_article);
         titleView.setText(items.get(position).getTitle());
         new DownloadImageTask(imageView).execute(items.get(position).getImage());
-
+//        Drawable drawable = imageView.getDrawable();
+//        final ImageView view = new ImageView(context);
+//        view.setImageDrawable(drawable);
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(context);
                 builder.setTitle("Choose Action");
                 builder.setMessage(items.get(position).getTitle());
+             //   builder.setView(view);
                 builder.setPositiveButton("Open in Browser", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
