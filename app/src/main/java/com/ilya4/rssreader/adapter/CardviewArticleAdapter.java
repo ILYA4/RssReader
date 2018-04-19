@@ -49,7 +49,7 @@ public class CardviewArticleAdapter extends RecyclerView.Adapter<CardviewArticle
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         CardView cardView = holder.cardView;
         ImageView imageView = cardView.findViewById(R.id.image_article);
-
+        imageView.setImageResource(R.drawable.giphy);
         TextView titleView = cardView.findViewById(R.id.title_article);
         titleView.setText(items.get(position).getTitle());
         new DownloadImageTask(imageView).execute(items.get(position).getImage());
@@ -93,6 +93,16 @@ public class CardviewArticleAdapter extends RecyclerView.Adapter<CardviewArticle
         CardView cardView = (CardView) LayoutInflater.from(parent.getContext()).inflate(R.layout.cardview_article,
                 parent, false);
         return new ViewHolder(cardView);
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return position;
+    }
+
+    @Override
+    public long getItemId(int position) {
+        return position;
     }
 
     private class DownloadImageTask extends AsyncTask<String, Void, Bitmap>{
